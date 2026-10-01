@@ -1,6 +1,10 @@
 pipeline{
     agent any
 
+    environment {
+        PATH = "C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;${env.PATH}"
+    }
+
     parameters{
         string(
             name:'APP_PORT',
@@ -22,7 +26,9 @@ pipeline{
         }
         stage('Check Docker'){
             steps{
-                bat 'docker --version'
+                
+                bat '"C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
+                bat '"C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" ps'
             }
         }
         stage('Dependencies'){
