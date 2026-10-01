@@ -5,7 +5,7 @@ const app=express();
 const PORT=3000;
 
 app.get("/",(req,res)=>{
-    res.send("APP is Working Fine";)
+    res.send("APP is Working Fine");
 })
 
 app.listen(PORT,"0.0.0.0",()=>{
