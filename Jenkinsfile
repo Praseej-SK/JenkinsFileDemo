@@ -10,11 +10,12 @@ pipeline{
         )
     }
 
-    environment{
-        IMAGE_NAME='jenkins_demo-app'
-        DOCKER_PATH = 'C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin'
-        PATH = "${DOCKER_PATH};${env.PATH}"
-    }
+    environment {
+    IMAGE_NAME = 'jenkins_demo-app'
+    DOCKER_PATH = 'C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin'
+    NODE_PATH = 'C:\\Program Files\\nodejs'
+    PATH = "${DOCKER_PATH};${NODE_PATH};${env.PATH}"
+}
 
     stages{
         stage('Checkout'){
@@ -32,12 +33,15 @@ pipeline{
         }
         stage('Dependencies'){
             steps{
-                bat 'npm install'
+              
+                bat 'node --version'
+                bat 'npm.cmd --version'
+             bat 'npm.cmd install'
             }
         }
         stage('Test APP'){
             steps{
-                bat 'npm test'
+                bat 'npm.cmd test'
             }
         }
         stage('Build'){
