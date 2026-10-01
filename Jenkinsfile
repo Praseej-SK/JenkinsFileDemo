@@ -1,9 +1,6 @@
 pipeline{
     agent any
-
-    environment {
-        PATH = "C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;${env.PATH}"
-    }
+    
 
     parameters{
         string(
@@ -15,6 +12,8 @@ pipeline{
 
     environment{
         IMAGE_NAME='jenkins_demo-app'
+        DOCKER_PATH = 'C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin'
+        PATH = "${DOCKER_PATH};${env.PATH}"
     }
 
     stages{
@@ -27,8 +26,8 @@ pipeline{
         stage('Check Docker'){
             steps{
                 
-                bat '"C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" --version'
-                bat '"C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" ps'
+                 bat 'docker --version'
+                bat 'docker ps'
             }
         }
         stage('Dependencies'){
